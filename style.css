@@ -1238,3 +1238,242 @@ a {
   height: 45px;
 
   border
+/* =========================================
+   JAVASCRIPT EFFECTS
+========================================= */
+
+#messageText {
+  transition:
+    opacity .18s ease,
+    transform .18s ease;
+}
+
+
+/* Gift animation */
+
+.gift-open-animation {
+  animation:
+    giftOpen .6s ease !important;
+}
+
+@keyframes giftOpen {
+
+  0% {
+    transform:
+      scale(1)
+      rotate(0deg);
+  }
+
+  20% {
+    transform:
+      scale(.9)
+      rotate(-10deg);
+  }
+
+  40% {
+    transform:
+      scale(1.2)
+      rotate(10deg);
+  }
+
+  60% {
+    transform:
+      scale(1.35)
+      rotate(-5deg);
+  }
+
+  100% {
+    transform:
+      scale(1)
+      rotate(0deg);
+  }
+
+}
+
+
+/* Mini notification */
+
+.mini-notification {
+  position: fixed;
+
+  top: 25px;
+  left: 50%;
+
+  z-index: 9999;
+
+  width:
+    min(380px, calc(100% - 30px));
+
+  padding: 13px 17px;
+
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  border:
+    1px solid rgba(255,255,255,.95);
+
+  border-radius: 22px;
+
+  background:
+    rgba(255,255,255,.88);
+
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+
+  box-shadow:
+    0 18px 45px
+    rgba(59,137,181,.2);
+
+  opacity: 0;
+
+  transform:
+    translate(-50%, -25px)
+    scale(.95);
+
+  transition:
+    .4s
+    cubic-bezier(.2,.8,.2,1);
+}
+
+
+.mini-notification.show {
+  opacity: 1;
+
+  transform:
+    translate(-50%, 0)
+    scale(1);
+}
+
+
+.mini-notification-icon {
+  width: 45px;
+  height: 45px;
+
+  flex-shrink: 0;
+
+  display: grid;
+  place-items: center;
+
+  border-radius: 15px;
+
+  background: #e5f7ff;
+
+  font-size: 23px;
+}
+
+
+.mini-notification div:last-child {
+  display: flex;
+  flex-direction: column;
+}
+
+
+.mini-notification strong {
+  color: #5185a1;
+
+  font-size: 13px;
+}
+
+
+.mini-notification span {
+  margin-top: 2px;
+
+  color: #86a4b5;
+
+  font-size: 10px;
+}
+
+
+/* Sparkles */
+
+.click-sparkle {
+  position: fixed;
+
+  z-index: 10000;
+
+  pointer-events: none;
+
+  color: white;
+
+  font-size: 20px;
+
+  text-shadow:
+    0 0 12px
+    #73c9f5;
+
+  animation:
+    clickSparkle
+    1.1s ease-out
+    forwards;
+}
+
+
+@keyframes clickSparkle {
+
+  from {
+    opacity: 1;
+
+    transform:
+      translate(-50%, -50%)
+      scale(.4)
+      rotate(0deg);
+  }
+
+  to {
+    opacity: 0;
+
+    transform:
+      translate(
+        calc(-50% + var(--move-x)),
+        calc(-50% + var(--move-y))
+      )
+      scale(1.5)
+      rotate(180deg);
+  }
+
+}
+
+
+/* Hearts */
+
+.floating-heart {
+  position: fixed;
+
+  z-index: 10000;
+
+  pointer-events: none;
+
+  font-size: 22px;
+
+  animation:
+    heartFloat
+    1.5s ease-out
+    forwards;
+}
+
+
+@keyframes heartFloat {
+
+  0% {
+    opacity: 0;
+
+    transform:
+      translateY(0)
+      scale(.5);
+  }
+
+  20% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+
+    transform:
+      translateY(-130px)
+      scale(1.3)
+      rotate(15deg);
+  }
+
+}
