@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#dff6ff">
+  <title>Maryam's Little World</title>
+  <link rel="stylesheet" href="style.css?v=20260904-2">
+</head>
+<body>
+  <div class="site-bg" aria-hidden="true"></div>
+  <div class="site-tint" aria-hidden="true"></div>
+
+  <header class="topbar">
+    <div class="profile"><span>🎀</span><div><b>Maryam</b><small>⭐ <i id="topStars">0</i> · 🎀 <i id="topBows">0</i></small></div></div>
+    <button id="musicToggle" class="round">🎵</button>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="glass hero-box">
+        <div class="pill">✨ A tiny magical place just for you ✨</div>
+        <div class="big-bow">🎀</div>
+        <p class="kicker">WELCOME TO</p>
+        <h1>Maryam's <span>Little World</span></h1>
+        <p class="lead">A dreamy world filled with bows, stars, sweets, little surprises and secret magic.</p>
+        <button id="enterWorldBtn" class="primary">Enter My World 🩵</button>
+        <div class="stats">
+          <div>⭐<b id="heroStars">0</b><small>Stars</small></div>
+          <div>🎀<b id="heroBows">0</b><small>Bows</small></div>
+          <div>🏆<b id="heroAchievements">0</b><small>Badges</small></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="activities" class="section">
+      <div class="glass section-head"><span>MARYAM'S WORLD</span><h2>Choose Something Magical</h2><p>Every adventure can unlock stars, bows and surprises.</p></div>
+      <div class="grid">
+        <button class="card" data-section="messages">💌<h3>Magic Messages</h3><p>Open a sweet little message.</p><em>Open →</em></button>
+        <button class="card" data-section="song">🎵<h3>Music Corner</h3><p>Listen to Maryam's favorite song.</p><em>Listen →</em></button>
+        <button class="card" data-section="gift">🎁<h3>Daily Magic Gift</h3><p>Open today's magical surprise.</p><em>Open →</em></button>
+        <button class="card" data-section="bows">🎀<h3>Bow Collection</h3><p>Collect bows and fill the bow book.</p><em>Collect →</em></button>
+        <button class="card" data-section="cupcake">🧁<h3>Cupcake Maker</h3><p>Create a tiny magical cupcake.</p><em>Create →</em></button>
+        <button class="card" data-section="friend">🐰<h3>My Little Friend</h3><p>Feed, play and relax with Bunny.</p><em>Visit →</em></button>
+        <button class="card" data-section="dress">👗<h3>Dress-Up Room</h3><p>Choose a dress, crown and bow.</p><em>Dress Up →</em></button>
+        <button class="card" data-section="cloud">☁️<h3>Dream Cloud</h3><p>Discover a tiny dream or wish.</p><em>Dream →</em></button>
+        <button class="card" data-section="stars">⭐<h3>Star Catcher</h3><p>Catch stars before they disappear.</p><em>Play →</em></button>
+        <button class="card" data-section="achievements">🏆<h3>Little Achievements</h3><p>See Maryam's magical badges.</p><em>View →</em></button>
+        <button class="card secret" data-section="secret">🔐<h3>Secret Room</h3><p>Unlock the hidden magical place.</p><em>Unlock →</em></button>
+      </div>
+    </section>
+
+    <section class="section progress-wrap">
+      <div class="glass progress-card"><div class="progress-title"><div><span>SECRET JOURNEY</span><h2>Unlock the Secret Room</h2></div><b>🔐</b></div><p>Collect 8 bows and 15 stars.</p><div class="progress"><i id="secretProgressBar"></i></div><small id="secretProgressText">Your journey has just begun ✨</small></div>
+    </section>
+  </main>
+
+  <section class="popup" id="messagesPopup"><div class="overlay"></div><div class="modal"><button class="close">×</button><div class="emoji">💌</div><span>JUST FOR MARYAM</span><h2>Magic Message</h2><div class="paper" id="magicMessage">Your smile makes this little world brighter. 🩵</div><button class="primary" id="newMessageBtn">Another Message ✨</button></div></section>
+
+  <section class="popup" id="songPopup"><div class="overlay"></div><div class="modal wide"><button class="close">×</button><div class="emoji">🎵</div><span>MARYAM'S MUSIC</span><h2>Favorite Song</h2><div class="youtube"><iframe src="https://www.youtube.com/embed/LfHm50UJW6U?rel=0" title="Maryam's Favorite Song" allowfullscreen></iframe></div></div></section>
+
+  <section class="popup" id="giftPopup"><div class="overlay"></div><div class="modal"><button class="close">×</button><div class="emoji" id="giftIcon">🎁</div><span>TODAY'S SURPRISE</span><h2>Daily Magic Gift</h2><p id="giftText">A tiny surprise is waiting inside.</p><button class="primary" id="openGiftBtn">Open My Gift 🎀</button></div></section>
+
+  <section class="popup" id="bowsPopup"><div class="overlay"></div><div class="modal wide"><button class="close">×</button><div class="emoji">🎀</div><span>MARYAM'S COLLECTION</span><h2>Bow Book</h2><div class="count"><b id="bowCount">0</b><small>Bows Collected</small></div><div id="bowBook" class="bowbook"></div><button class="primary" id="collectBowBtn">Find A Bow 🎀</button></div></section>
+
+  <section class="popup" id="cupcakePopup"><div class="overlay"></div><div class="modal wide"><button class="close">×</button><div class="emoji">🧁</div><span>SWEET LITTLE BAKERY</span><h2>Cupcake Maker</h2><div class="cup"><div id="cupcakeTop">🩵</div><div>🧁</div><div id="cupcakeDecoration">✨</div></div><p class="label">Frosting</p><div class="choices"><button data-frost="🩵">🩵</button><button data-frost="🤍">🤍</button><button data-frost="🩷">🩷</button><button data-frost="💜">💜</button></div><p class="label">Decoration</p><div class="choices"><button data-deco="✨">✨</button><button data-deco="🎀">🎀</button><button data-deco="⭐">⭐</button><button data-deco="🍓">🍓</button></div><button class="primary" id="finishCupcakeBtn">Finish My Cupcake 🧁</button></div></section>
+
+  <section class="popup" id="friendPopup"><div class="overlay"></div><div class="modal"><button class="close">×</button><span>MY LITTLE FRIEND</span><h2>Bunny's Room</h2><div class="bunny" id="bunnyCharacter">🐰</div><p id="bunnyMood">Bunny is happy to see you!</p><div class="mini"><button data-bunny="feed">🥕 Feed</button><button data-bunny="play">🧸 Play</button><button data-bunny="sleep">🌙 Sleep</button></div></div></section>
+
+  <section class="popup" id="dressPopup"><div class="overlay"></div><div class="modal wide"><button class="close">×</button><span>MAGICAL WARDROBE</span><h2>Dress-Up Room</h2><div class="doll"><div>👑</div><div>😊</div><div id="dressOutfit">👗</div><div id="dressBow">🎀</div></div><p class="label">Dress</p><div class="choices"><button data-outfit="👗">👗</button><button data-outfit="🥻">🥻</button><button data-outfit="🩵">🩵</button></div><p class="label">Bow</p><div class="choices"><button data-bow="🎀">🎀</button><button data-bow="🦋">🦋</button><button data-bow="💎">💎</button></div></div></section>
+
+  <section class="popup" id="cloudPopup"><div class="overlay"></div><div class="modal"><button class="close">×</button><div class="cloud">☁️</div><span>DREAM CLOUD</span><h2>Make A Tiny Wish</h2><p id="dreamText">Tap the cloud and let a little dream appear.</p><button class="primary" id="dreamButton">Touch The Cloud ☁️</button></div></section>
+
+  <section class="popup" id="starsPopup"><div class="overlay"></div><div class="modal wide"><button class="close">×</button><span>MAGICAL GAME</span><h2>Star Catcher</h2><p>Catch the glowing stars before they disappear!</p><div class="game" id="starGame"><div class="gameStart" id="gameStartScreen">⭐<button class="primary" id="startStarGame">Start Game</button></div></div><small>Caught: <b id="gameScore">0</b></small></div></section>
+
+  <section class="popup" id="achievementsPopup"><div class="overlay"></div><div class="modal wide"><button class="close">×</button><div class="emoji">🏆</div><span>LITTLE ACHIEVEMENTS</span><h2>Maryam's Badges</h2><div class="badges"><div data-achievement="firstBow">🎀<b>First Bow</b><small>Collect your first bow.</small></div><div data-achievement="fiveBows">👑<b>Bow Princess</b><small>Collect five bows.</small></div><div data-achievement="starCollector">⭐<b>Star Collector</b><small>Collect ten stars.</small></div><div data-achievement="cupcakeQueen">🧁<b>Cupcake Queen</b><small>Create a cupcake.</small></div><div data-achievement="bunnyFriend">🐰<b>Bunny Friend</b><small>Play with Bunny.</small></div><div data-achievement="secretExplorer">🔐<b>Secret Explorer</b><small>Unlock the Secret Room.</small></div></div></div></section>
+
+  <section class="popup" id="secretPopup"><div class="overlay"></div><div class="modal wide secret-modal"><button class="close">×</button><div id="secretLocked"><div class="emoji">🔐</div><span>SECRET ROOM</span><h2>Almost There...</h2><p>Maryam needs 8 bows and 15 stars to unlock this magical room.</p><div class="requirements"><div>🎀<b id="secretBowRequirement">0 / 8</b></div><div>⭐<b id="secretStarRequirement">0 / 15</b></div></div></div><div id="secretUnlocked" class="hidden"><span>✨ SECRET ROOM UNLOCKED ✨</span><h2>Maryam's Special Place</h2><div class="photo-frame"><img id="secretPhoto" src="secret-photo.jpg" alt="Maryam's special memory"><div id="secretPhotoPlaceholder" class="photo-placeholder">🩵<b>Secret Photo</b><small>Your special picture will appear here.</small></div></div><div class="letter">💌<p>Some people make ordinary moments feel magical. This little world was made to keep a little piece of that magic forever.</p></div><button id="secretBox" class="secret-box">🎁<small>Tap The Secret Box</small></button><div id="ultraSecret" class="ultra hidden">💎<h3>You Found The Hidden Surprise!</h3><p>You are officially the greatest explorer in Maryam's Little World.</p></div></div></div></section>
+
+  <div id="toast" class="toast">✨ Magic unlocked!</div>
+  <button id="hiddenBow" class="hidden-bow">🎀</button>
+  <footer class="glass">🎀<b>Maryam's Little World</b><small>Made with a little bit of magic 🩵</small></footer>
+  <script src="script.js?v=20260904-2"></script>
+</body>
+</html>
