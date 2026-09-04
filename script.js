@@ -1,16 +1,11 @@
-===================================
+/* =========================================
    LITTLE MARYAM'S WORLD 🤍🩵
    Main JavaScript
 ========================================= */
 
 document.addEventListener("DOMContentLoaded", () => {
 
-  /* =========================================
-     ELEMENTS
-  ========================================= */
-
   const enterWorldBtn = document.getElementById("enterWorldBtn");
-
   const activityCards = document.querySelectorAll(".activity-card");
 
   const messagesPopup = document.getElementById("messagesPopup");
@@ -30,28 +25,33 @@ document.addEventListener("DOMContentLoaded", () => {
   const hiddenBow = document.getElementById("hiddenBow");
 
   const musicToggle = document.getElementById("musicToggle");
+  const maryamSong = document.getElementById("maryamSong");
 
 
   /* =========================================
-     MARYAM'S MESSAGES
-     نغيرها لاحقًا لرسائلك الحقيقية
+     SONG
+  ========================================= */
+
+  const songUrl =
+    "https://www.youtube.com/embed/LfHm50UJW6U?rel=0";
+
+  if (maryamSong) {
+    maryamSong.src = songUrl;
+  }
+
+
+  /* =========================================
+     MESSAGES
   ========================================= */
 
   const messages = [
     "You are one of the sweetest little stars in the whole world. 🤍",
-
     "Never forget how special you are, Maryam. ✨",
-
     "Your smile can make even the clouds happy. ☁️🤍",
-
     "Keep being curious, kind and wonderfully you. 🩵",
-
     "A little reminder: you are loved more than you know. 🤍",
-
     "Today is another perfect day to be amazing. ✨",
-
     "There is only one Maryam in the whole world, and that makes you very special. 🎀",
-
     "Dream big, little star. The sky is waiting for you. ⭐"
   ];
 
@@ -59,18 +59,40 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
   /* =========================================
+     POPUPS
+  ========================================= */
+
+  function openPopup(popup) {
+    if (!popup) return;
+
+    popup.classList.add("active");
+    popup.setAttribute("aria-hidden", "false");
+    document.body.style.overflow = "hidden";
+  }
+
+
+  function closePopup(popup) {
+    if (!popup) return;
+
+    popup.classList.remove("active");
+    popup.setAttribute("aria-hidden", "true");
+    document.body.style.overflow = "";
+  }
+
+
+  /* =========================================
      ENTER WORLD
   ========================================= */
 
   if (enterWorldBtn) {
-
     enterWorldBtn.addEventListener("click", () => {
 
       const worldSection = document.getElementById("world");
 
       if (worldSection) {
         worldSection.scrollIntoView({
-          behavior: "smooth"
+          behavior: "smooth",
+          block: "start"
         });
       }
 
@@ -79,9 +101,7 @@ document.addEventListener("DOMContentLoaded", () => {
         window.innerHeight / 2,
         15
       );
-
     });
-
   }
 
 
@@ -100,14 +120,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
 
       else if (section === "song") {
-
-        /*
-          نخلي موضوع الأغنية لاحقًا.
-          النافذة تفتح حاليًا فقط.
-        */
-
         openPopup(songPopup);
-
       }
 
       else if (section === "gift") {
@@ -152,44 +165,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
   /* =========================================
-     OPEN POPUP
+     CLOSE POPUPS
   ========================================= */
-
-  function openPopup(popup) {
-
-    if (!popup) return;
-
-    popup.classList.add("active");
-
-    popup.setAttribute(
-      "aria-hidden",
-      "false"
-    );
-
-    document.body.style.overflow = "hidden";
-
-  }
-
-
-  /* =========================================
-     CLOSE POPUP
-  ========================================= */
-
-  function closePopup(popup) {
-
-    if (!popup) return;
-
-    popup.classList.remove("active");
-
-    popup.setAttribute(
-      "aria-hidden",
-      "true"
-    );
-
-    document.body.style.overflow = "";
-
-  }
-
 
   closeButtons.forEach((button) => {
 
@@ -217,10 +194,6 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
 
-  /* =========================================
-     ESC KEY
-  ========================================= */
-
   document.addEventListener("keydown", (event) => {
 
     if (event.key === "Escape") {
@@ -237,7 +210,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
   /* =========================================
-     MESSAGES
+     MESSAGE BUTTON
   ========================================= */
 
   if (nextMessageBtn) {
@@ -253,7 +226,6 @@ document.addEventListener("DOMContentLoaded", () => {
       if (messageText) {
 
         messageText.style.opacity = "0";
-        messageText.style.transform = "translateY(5px)";
 
         setTimeout(() => {
 
@@ -261,10 +233,8 @@ document.addEventListener("DOMContentLoaded", () => {
             messages[currentMessage];
 
           messageText.style.opacity = "1";
-          messageText.style.transform = "translateY(0)";
 
         }, 180);
-
       }
 
       createHearts(
@@ -279,7 +249,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
   /* =========================================
-     MAGIC GIFT BOX
+     GIFTS
   ========================================= */
 
   const gifts = [
@@ -287,37 +257,30 @@ document.addEventListener("DOMContentLoaded", () => {
       emoji: "⭐",
       text: "You found a little star!"
     },
-
     {
       emoji: "🤍",
       text: "A tiny heart just for Maryam!"
     },
-
     {
       emoji: "🦋",
       text: "A magical butterfly appeared!"
     },
-
     {
       emoji: "👑",
       text: "Princess Maryam found a crown!"
     },
-
     {
       emoji: "🌈",
       text: "You found a little rainbow!"
     },
-
     {
       emoji: "🍭",
       text: "A magical candy appeared!"
     },
-
     {
       emoji: "🧸",
       text: "You found a tiny teddy bear!"
     },
-
     {
       emoji: "🎀",
       text: "You found a special white bow!",
@@ -331,35 +294,17 @@ document.addEventListener("DOMContentLoaded", () => {
     magicGift.addEventListener("click", () => {
 
       const randomGift =
-        gifts[
-          Math.floor(
-            Math.random() * gifts.length
-          )
-        ];
+        gifts[Math.floor(Math.random() * gifts.length)];
 
-      magicGift.textContent =
-        randomGift.emoji;
+      magicGift.textContent = randomGift.emoji;
 
-      giftText.textContent =
-        randomGift.text;
-
-      magicGift.classList.add(
-        "gift-open-animation"
-      );
-
-      setTimeout(() => {
-
-        magicGift.classList.remove(
-          "gift-open-animation"
-        );
-
-      }, 600);
-
+      if (giftText) {
+        giftText.textContent = randomGift.text;
+      }
 
       if (randomGift.bow) {
         addBow();
       }
-
 
       createSparkles(
         window.innerWidth / 2,
@@ -377,14 +322,14 @@ document.addEventListener("DOMContentLoaded", () => {
   ========================================= */
 
   let bowCount =
-    Number(
-      localStorage.getItem(
-        "maryamBowCount"
-      )
-    ) || 0;
+    Number(localStorage.getItem("maryamBowCount")) || 0;
 
 
-  updateBowCounter();
+  function updateBowCounter() {
+    if (bowCountElement) {
+      bowCountElement.textContent = bowCount;
+    }
+  }
 
 
   function addBow() {
@@ -407,21 +352,14 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
 
-  function updateBowCounter() {
-
-    if (bowCountElement) {
-      bowCountElement.textContent =
-        bowCount;
-    }
-
-  }
+  updateBowCounter();
 
 
   function showBowCollection() {
 
     const requiredBows = 5;
 
-    let message;
+    let message = "";
 
     if (bowCount === 0) {
 
@@ -444,7 +382,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     }
 
-
     showComingSoon(
       "🤍",
       "My Bow Collection",
@@ -459,9 +396,7 @@ document.addEventListener("DOMContentLoaded", () => {
   ========================================= */
 
   let hiddenBowFound =
-    localStorage.getItem(
-      "maryamHiddenBow"
-    ) === "true";
+    localStorage.getItem("maryamHiddenBow") === "true";
 
 
   if (hiddenBowFound && hiddenBow) {
@@ -492,9 +427,6 @@ document.addEventListener("DOMContentLoaded", () => {
         25
       );
 
-      hiddenBow.style.transform =
-        "scale(2) rotate(25deg)";
-
       hiddenBow.style.opacity = "0";
 
       setTimeout(() => {
@@ -516,15 +448,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (bowCount < requiredBows) {
 
+      const remaining =
+        requiredBows - bowCount;
+
       showComingSoon(
         "🔐",
         "Secret Room",
-        `The door is locked! Find ${requiredBows - bowCount} more white bow${requiredBows - bowCount === 1 ? "" : "s"} to unlock it.`
+        `The door is locked! Find ${remaining} more white bow${remaining === 1 ? "" : "s"} to unlock it.`
       );
 
       return;
     }
-
 
     showComingSoon(
       "✨",
@@ -532,42 +466,27 @@ document.addEventListener("DOMContentLoaded", () => {
       "You found enough bows! Maryam's secret room is now unlocked."
     );
 
-
-    createSparkles(
-      window.innerWidth / 2,
-      window.innerHeight / 2,
-      35
-    );
-
   }
 
 
   /* =========================================
-     CUSTOM MINI POPUP
+     TEMP POPUP
   ========================================= */
 
-  function showComingSoon(
-    icon,
-    title,
-    text
-  ) {
+  function showComingSoon(icon, title, text) {
 
     const oldPopup =
-      document.querySelector(
-        ".temporary-popup"
-      );
+      document.querySelector(".temporary-popup");
 
     if (oldPopup) {
       oldPopup.remove();
     }
-
 
     const popup =
       document.createElement("div");
 
     popup.className =
       "popup active temporary-popup";
-
 
     popup.innerHTML = `
 
@@ -582,12 +501,7 @@ document.addEventListener("DOMContentLoaded", () => {
           ×
         </button>
 
-        <div
-          style="
-            font-size:60px;
-            margin-bottom:10px;
-          "
-        >
+        <div style="font-size:60px;">
           ${icon}
         </div>
 
@@ -596,11 +510,7 @@ document.addEventListener("DOMContentLoaded", () => {
         </h2>
 
         <div class="letter-card">
-
-          <p>
-            ${text}
-          </p>
-
+          <p>${text}</p>
         </div>
 
         <button
@@ -614,52 +524,40 @@ document.addEventListener("DOMContentLoaded", () => {
 
     `;
 
+    document.body.appendChild(popup);
 
-    document.body.appendChild(
-      popup
-    );
-
-    document.body.style.overflow =
-      "hidden";
-
+    document.body.style.overflow = "hidden";
 
     const close =
-      popup.querySelector(
-        ".temp-close"
-      );
+      popup.querySelector(".temp-close");
 
     const overlay =
-      popup.querySelector(
-        ".popup-overlay"
-      );
+      popup.querySelector(".popup-overlay");
 
     const okay =
-      popup.querySelector(
-        ".okay-button"
-      );
+      popup.querySelector(".okay-button");
 
 
     function removePopup() {
 
       popup.remove();
 
-      document.body.style.overflow =
-        "";
+      document.body.style.overflow = "";
 
     }
 
 
-    close.addEventListener(
+    close?.addEventListener(
       "click",
       removePopup
     );
 
-    overlay.addEventListener(
+    overlay?.addEventListener(
       "click",
       removePopup
     );
 
-    okay.addEventListener(
+    okay?.addEventListener(
       "click",
       removePopup
     );
@@ -668,7 +566,22 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
   /* =========================================
-     MINI NOTIFICATION
+     TOP MUSIC BUTTON
+  ========================================= */
+
+  if (musicToggle) {
+
+    musicToggle.addEventListener("click", () => {
+
+      openPopup(songPopup);
+
+    });
+
+  }
+
+
+  /* =========================================
+     NOTIFICATION
   ========================================= */
 
   function showMiniNotification(
@@ -678,21 +591,17 @@ document.addEventListener("DOMContentLoaded", () => {
   ) {
 
     const oldNotification =
-      document.querySelector(
-        ".mini-notification"
-      );
+      document.querySelector(".mini-notification");
 
     if (oldNotification) {
       oldNotification.remove();
     }
-
 
     const notification =
       document.createElement("div");
 
     notification.className =
       "mini-notification";
-
 
     notification.innerHTML = `
 
@@ -701,37 +610,21 @@ document.addEventListener("DOMContentLoaded", () => {
       </div>
 
       <div>
-        <strong>
-          ${title}
-        </strong>
-
-        <span>
-          ${text}
-        </span>
+        <strong>${title}</strong>
+        <span>${text}</span>
       </div>
 
     `;
 
-
-    document.body.appendChild(
-      notification
-    );
-
+    document.body.appendChild(notification);
 
     requestAnimationFrame(() => {
-
-      notification.classList.add(
-        "show"
-      );
-
+      notification.classList.add("show");
     });
-
 
     setTimeout(() => {
 
-      notification.classList.remove(
-        "show"
-      );
+      notification.classList.remove("show");
 
       setTimeout(() => {
         notification.remove();
@@ -752,16 +645,10 @@ document.addEventListener("DOMContentLoaded", () => {
     amount = 15
   ) {
 
-    for (
-      let i = 0;
-      i < amount;
-      i++
-    ) {
+    for (let i = 0; i < amount; i++) {
 
       const sparkle =
-        document.createElement(
-          "span"
-        );
+        document.createElement("span");
 
       sparkle.className =
         "click-sparkle";
@@ -771,35 +658,13 @@ document.addEventListener("DOMContentLoaded", () => {
           ? "✦"
           : "✨";
 
-
-      const randomX =
-        (Math.random() - 0.5) * 220;
-
-      const randomY =
-        (Math.random() - 0.5) * 220;
-
-
       sparkle.style.left =
         `${x}px`;
 
       sparkle.style.top =
         `${y}px`;
 
-      sparkle.style.setProperty(
-        "--move-x",
-        `${randomX}px`
-      );
-
-      sparkle.style.setProperty(
-        "--move-y",
-        `${randomY}px`
-      );
-
-
-      document.body.appendChild(
-        sparkle
-      );
-
+      document.body.appendChild(sparkle);
 
       setTimeout(() => {
         sparkle.remove();
@@ -811,7 +676,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
   /* =========================================
-     HEART EFFECT
+     HEARTS
   ========================================= */
 
   function createHearts(
@@ -820,16 +685,10 @@ document.addEventListener("DOMContentLoaded", () => {
     amount = 5
   ) {
 
-    for (
-      let i = 0;
-      i < amount;
-      i++
-    ) {
+    for (let i = 0; i < amount; i++) {
 
       const heart =
-        document.createElement(
-          "span"
-        );
+        document.createElement("span");
 
       heart.className =
         "floating-heart";
@@ -839,18 +698,13 @@ document.addEventListener("DOMContentLoaded", () => {
           ? "🤍"
           : "🩵";
 
-
       heart.style.left =
         `${x + (Math.random() - 0.5) * 120}px`;
 
       heart.style.top =
         `${y + (Math.random() - 0.5) * 50}px`;
 
-
-      document.body.appendChild(
-        heart
-      );
-
+      document.body.appendChild(heart);
 
       setTimeout(() => {
         heart.remove();
@@ -860,16 +714,4 @@ document.addEventListener("DOMContentLoaded", () => {
 
   }
 
-
-  /* =========================================
-     MUSIC BUTTON
-     نخليه جاهز ونربطه لاحقًا
-  ========================================= */
-
-  if (musicToggle) {
-
-    musicToggle.addEventListener(
-      "click",
-      () => {
-
-        openPopup(songPopup
+});
