@@ -1,4 +1,4 @@
-/* =========================================
+===================================
    LITTLE MARYAM'S WORLD 🤍🩵
    Main JavaScript
 ========================================= */
@@ -872,11 +872,4 @@ document.addEventListener("DOMContentLoaded", () => {
       "click",
       () => {
 
-        openPopup(songPopup);
-
-      }
-    );
-
-  }
-
-});
+        openPopup(songPopup
